@@ -117,10 +117,14 @@ const Dashboard: React.FC = () => {
     <div className={`e-card ${bgColor} text-white shadow-md`}>
       <div className="e-card-header p-6">
         <div className="e-card-header-caption">
-          <div className="e-card-header-title text-sm opacity-80">{title}</div>
+          <div className="e-card-header-title text-sm text-white opacity-80">
+            {title}
+          </div>
         </div>
         <div className="e-card-content">
-          <div className="text-2xl font-bold">{value.toLocaleString()}</div>
+          <div className="text-2xl font-bold text-white">
+            {value.toLocaleString()}
+          </div>
         </div>
       </div>
     </div>
@@ -132,37 +136,84 @@ const Dashboard: React.FC = () => {
         <StatCard
           title="Total Loans"
           value={totalLoans}
-          bgColor="bg-blue-400"
+          bgColor="bg-blue-600"
         />
         <StatCard
           title="Active Loans"
           value={activeLoans}
-          bgColor="bg-green-400"
+          bgColor="bg-green-600"
         />
         <StatCard
           title="Defaulted Loans"
           value={defaultedLoans}
-          bgColor="bg-red-400"
+          bgColor="bg-red-600"
         />
         <StatCard
           title="Completed Loans"
           value={completedLoans}
-          bgColor="bg-purple-400"
+          bgColor="bg-purple-600"
         />
       </div>
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-xl font-semibold mb-4">Loan Disbursement Trends</h3>
+      <div className="bg-white rounded-lg shadow-lg p-6">
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold text-gray-800">
+            Loan Disbursement Trends
+          </h3>
+          <p className="text-sm text-gray-600 mt-1">
+            Total amount disbursed per month
+          </p>
+        </div>
         <ChartComponent
           primaryXAxis={{
             valueType: "Category",
             title: "Month",
+            labelStyle: {
+              color: "#4b5563",
+              fontFamily: "Inter, sans-serif",
+              size: "14px",
+            },
+            titleStyle: {
+              color: "#374151",
+              fontFamily: "Inter, sans-serif",
+              size: "14px",
+            },
+            majorGridLines: { width: 0 },
+            border: { width: 0 },
           }}
           primaryYAxis={{
             title: "Amount ($)",
             labelFormat: "${value}",
+            titleStyle: {
+              color: "#374151",
+              fontFamily: "Inter, sans-serif",
+              size: "14px",
+            },
+            labelStyle: {
+              color: "#4b5563",
+              fontFamily: "Inter, sans-serif",
+              size: "14px",
+            },
+            rangePadding: "Additional",
+            majorGridLines: { width: 1, color: "#e5e7eb" },
           }}
-          tooltip={{ enable: true }}
+          chartArea={{ border: { width: 0 } }}
+          tooltip={{
+            enable: true,
+            shared: true,
+            format: "${series.name}: ${point.y}",
+            textStyle: { color: "#fff", fontFamily: "Inter, sans-serif" },
+          }}
           height="350px"
+          background="#ffffff"
+          palettes={["#4f46e5"]}
+          legendSettings={{
+            visible: true,
+            position: "Bottom",
+            textStyle: { color: "#4b5563", fontFamily: "Inter, sans-serif" },
+          }}
+          width="100%"
+          animation={{ enable: true }}
+          className="font-sans"
         >
           <Inject
             services={[LineSeries, Category, Legend, Tooltip, DataLabel]}
@@ -174,8 +225,18 @@ const Dashboard: React.FC = () => {
               xName="month"
               yName="amount"
               name="Loan Amount"
-              marker={{ visible: true }}
-              width={2}
+              marker={{
+                visible: true,
+                height: 8,
+                width: 8,
+                shape: "Circle",
+                fill: "#4f46e5",
+              }}
+              width={2.5}
+              style={{
+                dashArray: "0",
+              }}
+              opacity={1}
             />
           </SeriesCollectionDirective>
         </ChartComponent>

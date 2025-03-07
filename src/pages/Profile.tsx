@@ -76,89 +76,59 @@ const PersonalInfoTab: React.FC<{
 }> = ({ editedProfile, handleInputChange, handleSubmit }) => (
   <form onSubmit={handleSubmit} className="space-y-6 pt-4">
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          First Name
-        </label>
-        <TextBoxComponent
-          name="firstName"
-          value={editedProfile.firstName}
-          change={(e) => handleInputChange(e)}
-          placeholder="First Name"
-          floatLabelType="Auto"
-          cssClass="w-full"
-        />
-      </div>
+      <TextBoxComponent
+        name="firstName"
+        value={editedProfile.firstName}
+        change={(e) => handleInputChange(e)}
+        placeholder="First Name"
+        floatLabelType="Auto"
+        cssClass="w-full"
+      />
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Last Name
-        </label>
-        <TextBoxComponent
-          name="lastName"
-          value={editedProfile.lastName}
-          change={(e) => handleInputChange(e)}
-          placeholder="Last Name"
-          floatLabelType="Auto"
-          cssClass="w-full"
-        />
-      </div>
+      <TextBoxComponent
+        name="lastName"
+        value={editedProfile.lastName}
+        change={(e) => handleInputChange(e)}
+        placeholder="Last Name"
+        floatLabelType="Auto"
+        cssClass="w-full"
+      />
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Email
-        </label>
-        <TextBoxComponent
-          name="email"
-          value={editedProfile.email}
-          change={(e) => handleInputChange(e)}
-          placeholder="Email"
-          floatLabelType="Auto"
-          cssClass="w-full"
-        />
-      </div>
+      <TextBoxComponent
+        name="email"
+        value={editedProfile.email}
+        change={(e) => handleInputChange(e)}
+        placeholder="Email"
+        floatLabelType="Auto"
+        cssClass="w-full"
+      />
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Phone
-        </label>
-        <TextBoxComponent
-          name="phone"
-          value={editedProfile.phone}
-          change={(e) => handleInputChange(e)}
-          placeholder="Phone"
-          floatLabelType="Auto"
-          cssClass="w-full"
-        />
-      </div>
+      <TextBoxComponent
+        name="phone"
+        value={editedProfile.phone}
+        change={(e) => handleInputChange(e)}
+        placeholder="Phone"
+        floatLabelType="Auto"
+        cssClass="w-full"
+      />
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Position
-        </label>
-        <TextBoxComponent
-          name="position"
-          value={editedProfile.position}
-          change={(e) => handleInputChange(e)}
-          placeholder="Position"
-          floatLabelType="Auto"
-          cssClass="w-full"
-        />
-      </div>
+      <TextBoxComponent
+        name="position"
+        value={editedProfile.position}
+        change={(e) => handleInputChange(e)}
+        placeholder="Position"
+        floatLabelType="Auto"
+        cssClass="w-full"
+      />
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Department
-        </label>
-        <TextBoxComponent
-          name="department"
-          value={editedProfile.department}
-          change={(e) => handleInputChange(e)}
-          placeholder="Department"
-          floatLabelType="Auto"
-          cssClass="w-full"
-        />
-      </div>
+      <TextBoxComponent
+        name="department"
+        value={editedProfile.department}
+        change={(e) => handleInputChange(e)}
+        placeholder="Department"
+        floatLabelType="Auto"
+        cssClass="w-full"
+      />
     </div>
 
     <div className="flex justify-end">
