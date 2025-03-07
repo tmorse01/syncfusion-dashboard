@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
 import {
   HomeIcon,
   UserIcon,
@@ -7,10 +8,12 @@ import {
   DocumentTextIcon,
   Cog6ToothIcon,
   ArrowRightOnRectangleIcon,
+  Bars3Icon,
 } from "@heroicons/react/24/outline";
 
 interface SidebarProps {
   isCollapsed: boolean;
+  toggleSidebar: () => void;
 }
 
 interface NavItemProps {
@@ -41,7 +44,13 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon, title, isCollapsed }) => {
   );
 };
 
-const Sidebar: React.FC<SidebarProps> = ({ isCollapsed }) => {
+const Sidebar: React.FC<SidebarProps> = () => {
+  const [isCollapsed, setIsCollapsed] = React.useState(false);
+
+  const toggleSidebar = () => {
+    setIsCollapsed((prev) => !prev);
+  };
+
   return (
     <aside
       className={`bg-white shadow-lg transition-all ${
@@ -49,17 +58,22 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed }) => {
       }`}
     >
       <div className="h-full flex flex-col">
-        <div
-          className={`flex ${
-            isCollapsed ? "justify-center" : "px-4"
-          } items-center h-16 border-b`}
-        >
+        <div className={`flex items-center h-16 border-b`}>
           {!isCollapsed && (
-            <h1 className="text-xl font-bold text-gray-800">Loan Dashboard</h1>
+            <div className="flex items-center px-4 flex-1">
+              <h1 className="text-xl font-bold text-gray-800">
+                Loan Dashboard
+              </h1>
+            </div>
           )}
           {isCollapsed && (
-            <h1 className="text-xl font-bold text-gray-800">LD</h1>
+            <div className="flex items-center justify-center flex-1">
+              <h1 className="text-xl font-bold text-gray-800">LD</h1>
+            </div>
           )}
+          <ButtonComponent onClick={toggleSidebar} cssClass="e-flat px-2">
+            <Bars3Icon className="w-6 h-6 text-gray-600" />
+          </ButtonComponent>
         </div>
 
         <nav className="flex-1 p-4">

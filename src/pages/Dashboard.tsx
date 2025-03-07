@@ -132,22 +132,22 @@ const Dashboard: React.FC = () => {
         <StatCard
           title="Total Loans"
           value={totalLoans}
-          bgColor="bg-blue-600"
+          bgColor="bg-blue-400"
         />
         <StatCard
           title="Active Loans"
           value={activeLoans}
-          bgColor="bg-green-600"
+          bgColor="bg-green-400"
         />
         <StatCard
           title="Defaulted Loans"
           value={defaultedLoans}
-          bgColor="bg-red-600"
+          bgColor="bg-red-400"
         />
         <StatCard
           title="Completed Loans"
           value={completedLoans}
-          bgColor="bg-purple-600"
+          bgColor="bg-purple-400"
         />
       </div>
       <div className="bg-white rounded-lg shadow p-6">
