@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { registerLicense } from "@syncfusion/ej2-base";
 
-// Layout components
 import Layout from "./components/Layout";
 import LoadingSpinner from "./components/LoadingSpinner";
 

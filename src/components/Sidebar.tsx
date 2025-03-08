@@ -11,11 +11,6 @@ import {
   Bars3Icon,
 } from "@heroicons/react/24/outline";
 
-interface SidebarProps {
-  isCollapsed: boolean;
-  toggleSidebar: () => void;
-}
-
 interface NavItemProps {
   to: string;
   icon: React.ReactNode;
@@ -44,7 +39,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon, title, isCollapsed }) => {
   );
 };
 
-const Sidebar: React.FC<SidebarProps> = () => {
+const Sidebar: React.FC = () => {
   const [isCollapsed, setIsCollapsed] = React.useState(false);
 
   const toggleSidebar = () => {
@@ -57,10 +52,10 @@ const Sidebar: React.FC<SidebarProps> = () => {
         isCollapsed ? "w-16" : "w-64"
       }`}
     >
-      <div className="h-full flex flex-col">
+      <div className="flex flex-col h-full">
         <div className={`flex items-center h-16 border-b`}>
           {!isCollapsed && (
-            <div className="flex items-center px-4 flex-1">
+            <div className="flex items-center flex-1 px-4">
               <h1 className="text-xl font-bold text-gray-800">
                 Loan Dashboard
               </h1>
@@ -112,7 +107,7 @@ const Sidebar: React.FC<SidebarProps> = () => {
         <div className="p-4 border-t">
           <NavLink
             to="/login"
-            className="flex items-center px-4 py-2 text-red-500 hover:bg-red-100 rounded-lg"
+            className="flex items-center px-4 py-2 text-red-500 rounded-lg hover:bg-red-100"
           >
             <ArrowRightOnRectangleIcon className="w-5 h-5 mr-2" />
             {!isCollapsed && <span>Logout</span>}

@@ -1,16 +1,20 @@
 import React from "react";
 import { ButtonComponent } from "@syncfusion/ej2-react-buttons";
 import { BellIcon, UserCircleIcon } from "@heroicons/react/24/outline";
+import { ThemeSelector } from "./ThemeSelector";
 
 const Header: React.FC = () => {
   return (
-    <header className="bg-white shadow-sm h-16 flex items-center px-4 sticky top-0 z-10">
+    <header className="sticky top-0 z-10 flex items-center h-16 gap-4 px-4 bg-white shadow-sm">
       <div className="flex-1" />
+      <div className="flex items-center justify-center">
+        <ThemeSelector />
+      </div>
       <div className="flex items-center space-x-4">
         <ButtonComponent cssClass="e-round e-flat">
           <div className="relative">
             <BellIcon className="w-6 h-6 text-gray-600" />
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">
+            <span className="absolute flex items-center justify-center w-4 h-4 text-xs text-white bg-red-500 rounded-full -top-1 -right-1">
               3
             </span>
           </div>

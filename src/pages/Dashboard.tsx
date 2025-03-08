@@ -87,7 +87,7 @@ const Dashboard: React.FC = () => {
 
   if (isLoading)
     return (
-      <div className="flex justify-center items-center h-64">
+      <div className="flex items-center justify-center h-64">
         Loading dashboard data...
       </div>
     );
@@ -115,9 +115,9 @@ const Dashboard: React.FC = () => {
     bgColor: string;
   }) => (
     <div className={`e-card ${bgColor} text-white shadow-md`}>
-      <div className="e-card-header p-6">
+      <div className="p-6 e-card-header">
         <div className="e-card-header-caption">
-          <div className="e-card-header-title text-sm text-white opacity-80">
+          <div className="text-sm text-white e-card-header-title opacity-80">
             {title}
           </div>
         </div>
@@ -132,7 +132,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         <StatCard
           title="Total Loans"
           value={totalLoans}
@@ -154,12 +154,12 @@ const Dashboard: React.FC = () => {
           bgColor="bg-purple-600"
         />
       </div>
-      <div className="bg-white rounded-lg shadow-lg p-6">
+      <div className="p-6 bg-white rounded-lg shadow-lg">
         <div className="mb-6">
           <h3 className="text-xl font-semibold text-gray-800">
             Loan Disbursement Trends
           </h3>
-          <p className="text-sm text-gray-600 mt-1">
+          <p className="mt-1 text-sm text-gray-600">
             Total amount disbursed per month
           </p>
         </div>
@@ -212,7 +212,6 @@ const Dashboard: React.FC = () => {
             textStyle: { color: "#4b5563", fontFamily: "Inter, sans-serif" },
           }}
           width="100%"
-          animation={{ enable: true }}
           className="font-sans"
         >
           <Inject
@@ -233,16 +232,13 @@ const Dashboard: React.FC = () => {
                 fill: "#4f46e5",
               }}
               width={2.5}
-              style={{
-                dashArray: "0",
-              }}
               opacity={1}
             />
           </SeriesCollectionDirective>
         </ChartComponent>
       </div>
-      <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-xl font-semibold mb-4">Recent Loans</h3>
+      <div className="p-6 bg-white rounded-lg shadow">
+        <h3 className="mb-4 text-xl font-semibold">Recent Loans</h3>
         <GridComponent
           dataSource={recentLoans}
           allowPaging={true}
