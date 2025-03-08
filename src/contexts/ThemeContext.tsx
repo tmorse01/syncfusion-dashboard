@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 type Theme = "tailwind" | "material" | "bootstrap5" | "fabric";
 
@@ -13,7 +14,7 @@ const themeURLs: Record<Theme, string> = {
 
 interface ThemeContextType {
   currentTheme: Theme;
-  changeTheme: (theme: Theme) => void;
+  changeTheme: (theme: Theme) => Promise<void>;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -34,11 +35,21 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [currentTheme, setCurrentTheme] = useState<Theme>("tailwind");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const queryClient = useQueryClient();
 
-  const changeTheme = (theme: Theme) => {
-    // Fetch (or use cached) CSS via react-query.
-    queryClient
+  const changeTheme = (theme: Theme): Promise<void> => {
+    // If the theme is tailwind, skip fetching as it's imported in index.html.
+    if (theme === "tailwind") {
+      const styleTag: HTMLElement | null = document.getElementById("theme");
+      if (styleTag) {
+        styleTag.innerHTML = ""; // Clear any previously fetched CSS
+      }
+      setCurrentTheme(theme);
+      return Promise.resolve();
+    }
+    setIsLoading(true);
+    return queryClient
       .fetchQuery({
         queryKey: ["themeCSS", theme],
         queryFn: () => fetchCss(theme),
@@ -48,16 +59,23 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
         if (styleTag) {
           styleTag.innerHTML = `/*${theme}*/${css}`;
         }
+        setCurrentTheme(theme);
       })
       .catch((error) => {
         console.error("Failed to fetch theme CSS", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-    setCurrentTheme(theme);
   };
 
-  useEffect(() => {
-    changeTheme(currentTheme);
+  React.useEffect(() => {
+    if (currentTheme !== "tailwind") {
+      changeTheme(currentTheme);
+    }
   }, []);
+
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <ThemeContext.Provider value={{ currentTheme, changeTheme }}>
