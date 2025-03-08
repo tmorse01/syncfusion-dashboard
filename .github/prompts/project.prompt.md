@@ -18,7 +18,8 @@ This is a **modern React dashboard** built using:
 3. **Keep components reusable**. Use props for dynamic data.
 4. **Use Syncfusion components** instead of manually styled elements.
 5. **Favor Tailwind classes** over inline styles or separate `.css` files.
-6. **Follow React best practices**, including:
+6. **Support Dynamic Theming** via the theme context and syncfusions build in themes
+7. **Follow React best practices**, including:
 
    ### Card Components with Tailwind CSS
 

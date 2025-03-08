@@ -12,13 +12,18 @@ const themes = [
 export const ThemeSelector: React.FC = () => {
   const { currentTheme, changeTheme } = useTheme();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleThemeChange = (e: any) => {
+    changeTheme(e.itemData.value);
+  };
+
   return (
     <div>
       <DropDownListComponent
         dataSource={themes}
         fields={{ text: "text", value: "value" }}
         value={currentTheme}
-        change={(e) => changeTheme(e.value)}
+        change={handleThemeChange}
         width="150px"
       />
     </div>
